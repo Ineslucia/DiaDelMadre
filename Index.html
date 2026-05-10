@@ -1,0 +1,223 @@
+<!DOCTYPE html>
+<html lang="nl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Para mi mami ❤️</title>
+
+<style>
+
+body{
+    margin:0;
+    overflow:hidden;
+    font-family:Arial, sans-serif;
+
+    background:linear-gradient(to bottom right,#ffb6c1,#ff69b4);
+
+    display:flex;
+    justify-content:center;
+    align-items:center;
+
+    height:100vh;
+    color:white;
+    text-align:center;
+}
+
+.container{
+    z-index:2;
+    width:90%;
+    max-width:700px;
+}
+
+h1{
+    font-size:3em;
+    margin-bottom:10px;
+    animation:fadeIn 2s;
+}
+
+p{
+    font-size:1.3em;
+    margin-bottom:25px;
+}
+
+.slideshow{
+    width:100%;
+    height:400px;
+
+    position:relative;
+    overflow:hidden;
+
+    border-radius:25px;
+
+    box-shadow:0 0 25px rgba(255,255,255,0.5);
+}
+
+.slide{
+    position:absolute;
+    width:100%;
+    height:100%;
+
+    object-fit:cover;
+
+    opacity:0;
+
+    transition:opacity 1.5s ease-in-out;
+}
+
+.slide.active{
+    opacity:1;
+}
+
+button{
+    margin-top:25px;
+
+    padding:15px 30px;
+
+    border:none;
+    border-radius:30px;
+
+    font-size:18px;
+
+    cursor:pointer;
+
+    background:white;
+    color:#ff1493;
+
+    transition:0.3s;
+}
+
+button:hover{
+    transform:scale(1.1);
+}
+
+#message{
+    display:none;
+    margin-top:20px;
+    font-size:1.5em;
+}
+
+.flower{
+    position:absolute;
+    top:-50px;
+
+    font-size:25px;
+
+    animation:fall linear forwards;
+}
+
+@keyframes fall{
+    to{
+        transform:translateY(110vh) rotate(360deg);
+        opacity:0;
+    }
+}
+
+@keyframes fadeIn{
+    from{
+        opacity:0;
+    }
+
+    to{
+        opacity:1;
+    }
+}
+
+</style>
+</head>
+
+<body>
+
+<div class="container">
+
+    <h1>Feliz Dia del madre❤️</h1>
+
+    <p>
+      La mejor mama para mi💐
+    </p>
+
+    <div class="slideshow">
+
+        <img src="foto1.jpg" class="slide active">
+        <img src="foto2.jpg" class="slide">
+        <img src="foto3.jpg" class="slide">
+        <img src="foto4.jpg" class="slide">
+        <img src="foto5.jpg" class="slide">
+        <img src="foto6.jpg" class="slide">
+        <img src="foto7.jpg" class="slide">
+        <img src="foto8.jpg" class="slide">
+        <img src="foto9.jpg" class="slide">
+        <img src="foto10.jpg" class="slide">
+
+    </div>
+
+    <button onclick="showMessage()">
+        Hace click para una sorpresa
+    </button>
+
+    <div id="message">
+        Te queiro mucho mami ❤️
+    </div>
+
+</div>
+
+<script>
+
+const slides = document.querySelectorAll(".slide");
+
+let current = 0;
+
+function nextSlide(){
+
+    slides[current].classList.remove("active");
+
+    current++;
+
+    if(current >= slides.length){
+        current = 0;
+    }
+
+    slides[current].classList.add("active");
+}
+
+setInterval(nextSlide,3000);
+
+
+
+function showMessage(){
+    document.getElementById("message").style.display = "block";
+}
+
+
+
+// Vallende bloemen
+
+function createFlower(){
+
+    const flower = document.createElement("div");
+
+    flower.classList.add("flower");
+
+    flower.innerHTML = "🌸";
+
+    flower.style.left = Math.random() * 100 + "vw";
+
+    flower.style.animationDuration =
+        (Math.random() * 3 + 4) + "s";
+
+    flower.style.fontSize =
+        (Math.random() * 20 + 15) + "px";
+
+    document.body.appendChild(flower);
+
+    setTimeout(()=>{
+        flower.remove();
+    },7000);
+}
+
+setInterval(createFlower,300);
+
+</script>
+
+</body>
+</html>
